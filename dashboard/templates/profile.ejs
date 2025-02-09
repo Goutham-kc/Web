@@ -1,0 +1,39 @@
+<%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
+<title>
+  <%= bot.user.username %> - Profile
+</title>
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+      <h1><img class="img-fluid img-thumbnail" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png"><%= user.username %></h1>
+      <br>
+      <br>
+      <h3><i class="fa fa-certificate" aria-hidden="true"></i> Premium: <%= premium %></h3>
+      <div class="row1">
+				<div class="col">
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i> ID: <%= user.id %>
+        </div>
+        	<div class="col">
+         <i class="fa fa-user fa-fw" aria-hidden="true"></i></i> Tag: <%= user.username %>#<%= user.discriminator %>
+        </div>
+       </div>
+  <div class="row2">
+         	<div class="col">
+         <i class="fa fa-money" aria-hidden="true"></i> Balance: <%= bal %>
+        </div>
+        <div class="col">
+         <i class="fa fa-university" aria-hidden="true"></i> Bank: <%= bank %>/<%= limit %>
+        </div>
+</div>
+  </div>
+</div>
+<footer>
+  <%- include('blocks/footer')%>
+</footer>
+<style>
+  .row1{
+    margin-top:60px
+  }
+  .row2{
+    margin-top: 20px
+  }
+</style>

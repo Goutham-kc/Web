@@ -1,0 +1,73 @@
+<%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
+
+<html>
+  <title>
+    <%= bot.user.username %> - Premium
+  </title>
+  <body>
+<center><p>
+  <h1 style="color:white;">
+    PHOENIX.xyz Premium
+  </h1>
+  </p>
+    <br>
+    <p>
+  <h4 style="color:white;">
+    Premium key is:
+    </h4>
+
+    </p>
+  <p>
+<input type="text" value="<%= key %>" id="key" size='23'>
+
+<i class="fa fa-clipboard" aria-hidden="true" onclick="myFunction()" style="color:white;"></i>
+  </p>
+   </center>
+    <footer>
+      <%- include('blocks/footer')%>
+    </footer>
+  </body>
+</html>
+<style>
+  .container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+    display: flex;
+    animation: fadeIn 0.7s;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+  }
+.btn {
+  border: none;
+  background-color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+  .btn:hover{
+     background-color:#EC7063;
+     color:white;
+    border-radius:4px;
+  }
+  input[type=text] {
+  background-color:#36393f;
+  border-radius: 4px;
+  color: white;
+  border: 2px solid #ccc;
+  }
+</style>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("key");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>

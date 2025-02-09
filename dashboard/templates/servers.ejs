@@ -1,0 +1,90 @@
+<%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
+<html>
+  <title>
+    <%= bot.user.username %> - Servers
+  </title>
+  <body> 
+    <h1 class="display-3">Please select a server</h1>
+    <div class="container">
+      <% user.guilds.forEach(guild => {
+      const permsOnGuild = new perms(guild.permissions);
+      if(!permsOnGuild.has("MANAGE_GUILD")) return;
+    %>
+    <div class="card servers">
+      <br>
+      <center><% if (guild.icon) { %>
+        <img class="d-flex mr-3 rounded-circle" src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.jpg?size=128" style="width: 75px;" alt="">
+        <% } else { %>
+          <img class="d-flex mr-3 rounded-circle" src="https://i.imgur.com/2otMem9.png" style="width: 75px;" alt="">
+        <% } %></center>
+     <p style="color:white; font-size:20px;"> <%= guild.name %></p> 
+      <center>
+         <% 
+          let href, text;
+          let enabled;
+         if(bot.guilds.cache.get(guild.id)) {
+            href = "/manage/" + guild.id;
+            text = "Manage";
+            enabled = true; %>
+        <a class="btn btn-primary btn-lg<% if(!enabled) { %> disabled<% } %>" role="button" href="<%= href %>" style="width:120px;">
+         <%= text %>
+          </a>
+         <% } else {
+          var invitePerm = bot.config.dashboard.invitePerm;
+            href = `https://discordapp.com/oauth2/authorize?client_id=687987885604864033&scope=bot&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${bot.callbackURL}`)}&permissions=${invitePerm}`;
+            text = `Invite Bot`;
+            enabled = true %>
+             <a class="btn btn-primary btn-lg<% if(!enabled) { %> disabled<% } %>" role="button" href="<%= href %>" style="width:120px;">
+         <i class="fa fa-plus-circle" aria-hidden="true"></i> Invite
+          </a>
+         <% } %>
+      </center>
+    </div>
+  <% }); %>
+    </div>
+  </body>
+  <footer>
+    <%- include('blocks/footer')%>
+  </footer>
+  </html>
+      
+  <style>
+    .body{
+      height:50%;
+    }
+    .display-3{
+     color:white;
+     text-align:center;
+     font-size: 50px; 
+  }
+    
+    .inv-man{
+      text-align:center;
+      color: #36393f
+    }
+    .container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+    display: flex;
+    animation: fadeIn 0.7s;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+  }
+  .card{
+    background-color: #36393f!important;
+    color: white;
+    text-align: center;
+    animation: fadeIn 0.5s;
+    border-radius: 10px;
+    margin: 15px;
+  }
+    .card.servers{
+    height: 250px;
+    width: 300px;
+}   
+  </style> 
+

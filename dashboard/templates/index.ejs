@@ -1,0 +1,59 @@
+<%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
+
+<html>
+  <title>
+    <%= bot.user.username %> - Home
+  </title>
+  <body>
+ <center>
+   <img src='https://cdn.glitch.com/3da1612c-1c54-4ad5-96e2-3a1311a4e6d5%2F7704b040af064c176cffdb3f93180c27-removebg-preview.png?v=1596689689985' style="width: 260px; height: 260px;">
+  <h1  style="color:grey;"><%= bot.user.username %> </h1>
+  <h4 style="color:grey;">A verified a bot with moderation, economy, utility commands and so much more!</h4>
+ </center>
+<center>
+    
+</center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="container">
+<div class="card">
+  </div>
+    </div>
+    <footer>
+      <%- include('blocks/footer')%>
+    </footer>
+  </body>
+</html>
+<style>
+  .container{
+        display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+    display: flex;
+    animation: fadeIn 0.7s;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+  }
+  .card{
+    background-color: #36393f!important;
+    color: white;
+   height: 680px;
+    width: 650px;
+    padding: 10px;
+    padding-top: 10px;
+    border-radius: 8px;
+  }
+</style>

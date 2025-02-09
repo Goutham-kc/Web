@@ -1,0 +1,59 @@
+<%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
+
+<html>
+  <title>
+    <%= bot.user.username %> - Premium
+  </title>
+  <body>
+<center><p>
+  <h1 style="color:white;">
+    PHOENIX.xyz Premium
+  </h1>
+  </p>
+  <br>
+    <p>
+    <h4 style="color:grey;">
+ Uh-oh Looks like you dont have enough money for a premium key.<br> Make sure you have enough money in-hand(withdrawn from bank)
+    </p>
+    <br>
+    <br>
+    <br>
+   <a href="/" ><button class="button">Go Back</button></a>
+   </center>
+    <footer>
+      <%- include('blocks/footer')%>
+    </footer>
+  </body>
+</html>
+<style>
+  .container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+    display: flex;
+    animation: fadeIn 0.7s;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+  }
+  .button {
+  background-color:#36393f; 
+  color: #EC7063;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-color:#EC7063;
+  border-radius:4px;
+}
+  .button:hover{
+     background-color:#EC7063;
+     color:white;
+    border-radius:4px;
+  }
+</style>

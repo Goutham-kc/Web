@@ -1,0 +1,230 @@
+<html>
+  <head>
+      <meta charset="UTF-8">
+<meta name="theme-color" content="#ffa500">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Discord Bot">
+<meta property="og:image" content="https://i.imgur.com/7XwMb8r.png">
+<meta property="og:url" content="http://dashboard.phoenix-xyz.cf/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel='icon' type="image/png" href=<%= bot.user.displayAvatarURL() %>>
+  </head>
+
+  <body>
+
+  <link href="/public/theme-light.css" rel="stylesheet"/> 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <% if (bot.user.displayAvatarURL()) { %><link rel='icon' href='<%= bot.user.displayAvatarURL() %>'><% } %>
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<div class='header'>
+  <nav class="navbar navbar-expand-md navbar-light" id='nav' style='background-color:#1a1919'>
+    <div class="container">
+      <p class="navbar-brand" href="/" style='color:white;'><% if (bot.user.displayAvatarURL()) { %><img src="<%= bot.user.displayAvatarURL() %>" width="35" height="35" class="d-inline-block align-top rounded-circle" alt=""><% } %> <%= bot.user.username %></p>
+			<button style="color:white;"class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon" ></span></button>
+      <div class="collapse navbar-collapse" id="navbar01">
+        <ul class="navbar-nav mr-auto">
+          <h5 class="nav-item"><a class="nav-link" style='color:white ' href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a></h5>
+          <h5 class="nav-item"><a class="nav-link" style='color:white' href="https://discord.gg/RPVQdyw"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>Join Our Discord</a></h5>
+                   <h5 class="nav-item"><a class="nav-link" style='color:white' href="#"><i class="fa fa-comments fa-fw" aria-hidden="true"></i>Commands</a></h5>
+          <h5 class="nav-item"><a class="nav-link" style='color:white' href="/stats"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> Status</a></h5>
+                    <h5 class="nav-item"><a class="nav-link" style='color:white' href="/premium"><i class="fa fa-certificate" aria-hidden="true"></i> Get Premium</a></h5>
+          <% var invitePerm = "470019271" %>
+        </ul>
+        <ul class="navbar-nav">
+          <% if(auth) { %>
+            <li class="dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color:white'>
+                <% if (user.avatar) { %>
+                <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=32" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
+                <% } %>
+                <%= user.username %>#<%= user.discriminator %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <h6 class="dropdown-header"><i class="fa fa-user fa-fw" aria-hidden="true"></i> <%= user.username %></h6>
+                  <a class="dropdown-item" href="/profile"><i class="fa fa-users fa-fw"></i>Profile</a>
+                <a class="dropdown-item" href="/servers"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i>Servers</a>
+                <% if(bot.config.ownerID.includes(user.id)) { %>
+                  <a class="dropdown-item" href="/admin"><i class="fa fa-key fa-fw"></i>Admin</a>
+                <% } %>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Logout</a>
+              </div>
+            </li>
+          <% } else { %>
+            <li class="nav-item" style="display: inline;"><button class="btn"><a href="/login" class="nav-link" style='color:white'><i class="fa fa-key fa-fw" aria-hidden="true"></i>Login With Discord</a></button></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    </div>
+  </body>
+  
+</html>
+
+<style>
+  
+  body{
+    background-color: #1a1919;
+  }
+  
+
+</style>
+
+	<script>
+    $(window).on('load', function() {
+      $('#loading').hide();
+      $('.pageContent').show();
+      
+      function warnConsole () { 
+        console.clear();
+        console.log('%c' + 'Oh... Hi, didn\'t expect to see you here...', 'font-size: 18px; font-weight: bold; color: red;');
+        console.log('%c' + 'But you really shouldn\'t be here...', 'font-size: 18px;');
+      }
+      warnConsole();
+      window.onresize = function(){ 
+        if ((window.outerHeight - window.innerHeight) > 100) {
+            warnConsole();
+        }
+      }
+    });
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires="+ d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+		function getCookie(cname) {
+				var name = cname + "=";
+				var decodedCookie = decodeURIComponent(document.cookie);
+				var ca = decodedCookie.split(';');
+				for(var i = 0; i <ca.length; i++) {
+						var c = ca[i];
+						while (c.charAt(0) == ' ') {
+								c = c.substring(1);
+						}
+						if (c.indexOf(name) == 0) {
+								return c.substring(name.length, c.length);
+						}
+				}
+				return "";
+		}
+	</script>
+
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#00f2ff"
+    },
+    "button": {
+      "background": "#30252e"
+    }
+  },
+  "showLink": false,
+  "theme": "classic",
+  "position": "bottom-center"
+})});
+</script>
+
+<style>
+    .pageContent {
+      display:none;
+    }
+    
+   
+    
+    #noscript {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      height: 2em;
+      overflow: show;
+      margin: auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      text-align: center;
+    }
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    
+    
+          
+  </style>
+
+  <noscript>
+    <style>
+      #noscript {
+        display: block;
+      }
+      #loading {
+        border: none;
+        -webkit-animation: unset;
+        animation: unset;
+        height: 0;
+        width: 0;
+      }
+      .pageContent {
+        display: none;
+      }
+    </style>
+  </noscript>
+<style>
+  .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height:100px;
+  background-color: black;
+  color: white;
+  text-align:center;
+}
+  
+.underfooter {
+    font-size: large;
+    text-align: center;
+}
+  .footer a{
+    float: middle;
+    font:100px;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+  }
+ 
+  
+  #header {
+    background-color: #1a1919;
+  }
+  h5:hover{
+    background-color:grey;
+    border-radius:4px;
+  }
+  .btn {
+  border: none;
+  background-color: #1a1919;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn:hover {background: grey}
+</style>
+ 
