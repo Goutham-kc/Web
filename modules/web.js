@@ -171,6 +171,16 @@ module.exports = (client) => {
 			auth: true
 		});
 	});
+
+	app.get('/games', checkAuth, (req, res) => {
+		const perms = Discord.Permissions;
+		res.render(path.resolve(`${templateDir}${path.sep}games.ejs`), {
+			perms: perms,
+			bot: client,
+			user: req.user,
+			auth: true
+		});
+	});
   
 	app.post('/check', checkAuth, (req, res) => {
 		const perms = Discord.Permissions;
