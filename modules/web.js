@@ -210,35 +210,15 @@ const perms = Discord.Permissions;
 }
 	});    
          app.get('/profile', checkAuth, (req, res) => {
-    client.db.collection('Userinfo').doc(req.user.id).get().then((q) => {
-   let cash;
-   let bank;
-   let limit;
-   let premium;
-   if(q.exists){
-     cash = q.data().cash
-     bank = q.data().bank
-     limit = q.data().limit
-     premium = q.data().premium
-   }
-if(!cash) cash = 0
-if(!bank) bank = 0
-if(!limit) limit = 2000
-if(!premium) premium = false 
 		const perms = Discord.Permissions;
 		res.render(path.resolve(`${templateDir}${path.sep}profile.ejs`), {
 			perms: perms,
 			bot: client,
 			user: req.user,
 			auth: true,
-            bal: cash,
-            bank: bank,
-            limit: limit,
-            premium: premium
 		})   
 	})
         
-    })
   
           app.get('/premium', checkAuth, (req, res) => {
     client.db.collection('Userinfo').doc(req.user.id).get().then((q) => {

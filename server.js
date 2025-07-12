@@ -16,18 +16,6 @@ function makeid(length) {
 }
 
 
-
-const firebase = require('firebase/app')
- const FieldValue = require('firebase-admin').firestore.FieldValue;
- const admin = require('firebase-admin')
- const serviceAccount = require ('./Database/serviceAccount.json')
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-})
-
-
-
-
 class Global extends Client {
   constructor (options) {
     super(options);
@@ -39,8 +27,6 @@ class Global extends Client {
     this.aliases = new Collection(); 
     this.logger = require("./modules/Logger"); 
     this.wait = require("util").promisify(setTimeout); 
-    this.db = admin.firestore();
-    this.FieldValue = FieldValue
     this.ownerId = this.config.ownerID 
     
   }
